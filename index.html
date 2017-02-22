@@ -28,18 +28,23 @@
 
 		   });
 	           	   
-		   var findNearest = new FindNearest({
+		   var findNearestStart = new FindNearest({
 			portalUrl: "http://teamprototype.maps.arcgis.com";
 			analysisLayer: grt_stops;
 			map: response.map;
 			maxCount: 1;
 			nearLayer: // This is where we need to get the input from the user.
-			outputLayerName: "Nearest bus stop";
-				
-
-
-
+			outputLayerName: "Start Point";
 		   });
+                   var findNearestEnd = new FindNearest({
+			portalUrl: "http://teamprototype.maps.arcgis.com";
+			analysisLayer: grt_stops;
+			map: response.map;
+			maxCount: 1;
+			nearLayer: // This is where we need to get the input from the user.
+			outputLayerName: "End Point";
+		   });
+	           
 		/*   var legend = new Legend({
 		     map: map,
 		          layerInfos:(arcgisUtils.getLegendLayers(response))
