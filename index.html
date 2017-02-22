@@ -1,0 +1,79 @@
+<DOCTYPE HTML>
+
+<html>
+	<head>
+	<title>Testing</title>
+	</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="inital-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.19/"></script>
+    <script>
+      var map;
+      require(["esri/map",
+               "esri/arcgis/utils",
+	       "esri/dijit/analysis/FindNearest",
+	       "esri/layers/FeatureLayer",
+	       // "esri/dijit/Legend",
+               "dojo/domReady!"
+	      ], function(Map, arcgisUtils, FeatureLayer, Legend, FindNearest) {
+                 arcgisUtils.createMap("cd01f8056030463ebd7950e42baf6b45", "mapDiv").then(function (response) {
+		   map = response.map;
+		   var grt_stops = new FeatureLayer({
+			   url: "http://services7.arcgis.com/XOesAnDZuBW07yDr/arcgis/rest/services/GRT_Stops/FeatureServer/0";
+		   });
+		   var grt_network = new FeatureLayer({
+                   	   url: "http://services7.arcgis.com/XOesAnDZuBW07yDr/arcgis/rest/services/GRT_Route_ND/FeatureServer/0";
+
+
+		   });
+	           	   
+		   var findNearest = new FindNearest({
+			portalUrl: "http://teamprototype.maps.arcgis.com";
+			analysisLayer: grt_stops;
+			map: response.map;
+			maxCount: 1;
+			nearLayer: // This is where we need to get the input from the user.
+			outputLayerName: "Nearest bus stop";
+				
+
+
+
+		   });
+		/*   var legend = new Legend({
+		     map: map,
+		          layerInfos:(arcgisUtils.getLegendLayers(response))
+			}, "legendDiv");
+	           legend.startup();
+		  */ 
+		 
+		 });
+                }
+			       
+		
+      
+		       
+		       );
+    </script>
+<style>
+      html, body, #mapDiv, .map.container {
+        height: 100%;
+        width:90%;
+        padding: 0;
+        margin: 0;
+      }
+      #legendDiv{
+        background-color: #fff;
+	position: absolute !important;
+	z-index: 99;
+	width: 200px;
+	top:10px;
+	right:20px;
+      }
+    </style>
+  </head>
+  <body class="claro">
+    <div id="mapDiv"></div>
+    <div id="legendDiv"></div>
+  </body>
+</html>
