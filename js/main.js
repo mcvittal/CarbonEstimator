@@ -9,17 +9,23 @@ require(["esri/map",
 "esri/dijit/Legend",
 "esri/geometry/webMercatorUtils",
 "dojo/dom",
-"dojo/domReady!",
 "esri/geometry/Point",
 "esri/symbols/SimpleMarkerSymbol",
 "esri/graphic",
 "esri/layers/GraphicsLayer",
-"esri/dijit/Search"
+"esri/dijit/Search",
+"dojo/domReady!"
 ], function(Map, arcgisUtils, FeatureLayer, Legend, FindNearest, webMercatorUtils, dom, Point, SimpleMarkerSymbol, Graphic, GraphicsLayer, Search) {
 arcgisUtils.createMap("cd01f8056030463ebd7950e42baf6b45", "mapDiv").then(function(response) {
     map = response.map;
     var clicked = 1;
     var tmp = false;
+
+    var search = new Search({
+             map: map
+          }, "search");
+          search.startup();
+
 
     map.on("click", showCoordinates);
 
@@ -76,10 +82,6 @@ arcgisUtils.createMap("cd01f8056030463ebd7950e42baf6b45", "mapDiv").then(functio
     console.log("11"+addresses);
     map.addLayer(addresses);
 
-    var search = new Search({
-             map: map
-          }, "search");
-          search.startup();
 
 
 
