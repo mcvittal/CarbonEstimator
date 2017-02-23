@@ -1,4 +1,4 @@
-html, body,.map.container {
+html, body, .map.container {
     height: 100vh;
     width: 80vw;
     padding: 0;
@@ -15,14 +15,24 @@ html, body,.map.container {
 
 #info {
     width: 18vw;
-    float:left;
+    float: left;
 }
-#mapDiv{
+
+#mapDiv {
     height: 95vh;
     width: 80vw;
     margin-left: 15vw;
 }
-.wrapper{
-  width: 100vw;
-  display: inline-block;
+
+.wrapper {
+    width: 100vw;
+    display: inline-block;
+}
+
+#search {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 70px;
+    left: 74px;
 }
